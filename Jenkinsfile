@@ -1,27 +1,24 @@
 pipeline {
     agent any
     tools {
-        nodejs 'Node_24' // Debe coincidir exactamente con el nombre asignado en Jenkins
+        nodejs 'Node_24'
     }
     stages {
-        // Etapa 1: Descargar el código fuente desde tu GitHub
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/SamuVL19/ucp-app-react.git'
             }
         }
-        // Etapa 2: Instalar librerías y compilar
         stage('Build') {
             steps {
-                sh 'npm install'[cite: 1]
-                sh 'npm run build'[cite: 1]
+                sh 'npm install'
+                sh 'npm run build'
             }
         }
-        // Etapa 3: Ejecutar pruebas unitarias
         stage('Unit Tests') {
             steps {
                 sh 'npm test -- --watchAll=false --silent > test-output.txt'
-                sh 'cat test-output.txt'[cite: 1]
+                sh 'cat test-output.txt'
             }
         }
     }
@@ -30,10 +27,10 @@ pipeline {
             archiveArtifacts artifacts: 'test-output.txt', allowEmptyArchive: true
         }
         success {
-            echo 'Pipeline ejecutado con éxito!'[cite: 1]
+            echo 'Pipeline ejecutado con éxito!'
         }
         failure {
-            echo 'Pipeline fallido. Revisar logs.'[cite: 1]
+            echo 'Pipeline fallido. Revisar logs.'
         }
     }
 }
