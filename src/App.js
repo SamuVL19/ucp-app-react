@@ -1,8 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import React from 'react';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/Universidad Católica de Pereira/i);
-  expect(linkElement).toBeInTheDocument();
-});
+function App() {
+  return (
+    <div>
+      <h1>Universidad Católica de Pereira</h1>
+      <p>Listado de integrantes - Proceso de Desarrollo de Software I</p>
+      <p>profe: Andrés Mauricio Martinez Hincapie</p>
+    </div>
+  );
+}
+
+export default App;
