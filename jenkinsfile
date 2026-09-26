@@ -7,7 +7,7 @@ pipeline {
         // Etapa 1: Descargar el código fuente desde tu GitHub
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/SamuVL19/ucp-app-react.git'[cite: 1]
+                git branch: 'main', url: 'https://github.com/SamuVL19/ucp-app-react.git'
             }
         }
         // Etapa 2: Instalar librerías y compilar
@@ -20,14 +20,14 @@ pipeline {
         // Etapa 3: Ejecutar pruebas unitarias
         stage('Unit Tests') {
             steps {
-                sh 'npm test -- --watchAll=false --silent > test-output.txt'[cite: 1]
+                sh 'npm test -- --watchAll=false --silent > test-output.txt'
                 sh 'cat test-output.txt'[cite: 1]
             }
         }
     }
     post {
         always {
-            archiveArtifacts artifacts: 'test-output.txt', allowEmptyArchive: true[cite: 1]
+            archiveArtifacts artifacts: 'test-output.txt', allowEmptyArchive: true
         }
         success {
             echo 'Pipeline ejecutado con éxito!'[cite: 1]
